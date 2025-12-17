@@ -1,0 +1,369 @@
+/* Importando fonte gótica do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+/* Variáveis de cores */
+:root {
+    --black: #000000;
+    --dark-gray: #111111;
+    --gray: #222222;
+    --light-gray: #333333;
+    --white: #ffffff;
+    --blood-red: #8b0000;
+    --accent: #ff0000;
+    --muted: #666666;
+}
+
+/* Variáveis de tema para botões - fácil customização global */
+:root {
+    --btn-bg: var(--dark-gray);
+    --btn-bg-hover: var(--blood-red);
+    --btn-border: var(--blood-red);
+    --btn-color: var(--white);
+    --btn-shadow: 0 0 10px var(--blood-red);
+    /* variante vermelha (quando usada) */
+    --btn-red-bg: var(--blood-red);
+    --btn-red-border: var(--blood-red);
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Times New Roman', serif;
+    line-height: 1.6;
+}
+
+body {
+    min-height: 100vh;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+        url('assets/cemiterio.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Cabeçalho */
+.header {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--blood-red);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo img {
+    max-height: 60px;
+    filter: brightness(0.9) contrast(1.2);
+}
+
+.site-title {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 2rem;
+    color: var(--white);
+    text-shadow: 0 0 10px var(--blood-red);
+}
+
+.tag {
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Seção hero */
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--blood-red);
+    letter-spacing: 2px;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--muted);
+}
+
+/* Grid de produtos */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Cards de produto */
+.product {
+    background: linear-gradient(to bottom, var(--dark-gray), var(--black));
+    border: 1px solid var(--light-gray);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    /* Forçar layout em coluna para permitir alinhamento do botão no final do card */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* Altura mínima para uniformizar linhas de cards (ajuste conforme necessário) */
+    min-height: 300px;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+}
+
+.product::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: brightness(0.9) contrast(1.2);
+    transition: filter 0.3s ease;
+}
+
+.product:hover img {
+    filter: brightness(1) contrast(1.3);
+}
+
+.product h3 {
+    color: var(--white);
+    margin-bottom: 2.0rem;
+    font-family: 'UnifrakturMaguntia', cursive;
+}
+
+.product p:not(.price) {
+    min-height: 2.4em;
+    margin-bottom: 1rem;
+}
+
+.price {
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+/* Garante que o botão de compra dentro do card fique sempre no final (mesma altura entre cards) */
+.product .coffin-btn {
+    margin-top: auto;
+    align-self: center;
+}
+
+.product .coffin-btn.large {
+    align-self: center;
+}
+
+/* Botão estilo caixão */
+.coffin-btn {
+    /* Cores controladas por variáveis para fácil customização */
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    border: 1px solid var(--btn-border);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', serif;
+    position: relative;
+    clip-path: polygon(10% 0, 90% 0, 100% 20%, 100% 80%, 90% 100%, 10% 100%, 0 80%, 0 20%);
+}
+
+.coffin-btn:hover {
+    background: var(--btn-bg-hover);
+    transform: scale(1.05);
+    box-shadow: var(--btn-shadow);
+}
+
+.coffin-btn.large {
+    padding: 0.7rem 2rem;
+    font-size: 1.1rem;
+}
+
+.coffin-btn.red {
+    background: var(--btn-red-bg);
+    border-color: var(--btn-red-border);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: block;
+}
+
+.card {
+    background: var(--dark-gray);
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid var(--blood-red);
+    position: relative;
+}
+
+/* Formulário */
+.form-row {
+    margin-bottom: 1rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem;
+    background: var(--gray);
+    border: 1px solid var(--light-gray);
+    color: var(--white);
+    margin-top: 0.3rem;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--blood-red);
+    box-shadow: 0 0 5px var(--blood-red);
+}
+
+/* Rodapé */
+.footer {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+    padding: 2rem;
+    text-align: center;
+    border-top: 2px solid var(--blood-red);
+    margin-top: 4rem;
+}
+
+.footer a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--accent);
+}
+
+/* Termos e Política */
+.terms-card {
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.terms-content {
+    margin-top: 2rem;
+}
+
+/* Ajustes para ações dentro do cartão de termos */
+.terms-card .actions {
+    display: flex;
+    justify-content: space-between; /* Espaça os botões nas extremidades */
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+/* Garante que os botões dentro do .actions tenham o mesmo tamanho base */
+.terms-card .actions .coffin-btn {
+    flex: 0 1 auto; /* Permite que os botões mantenham seu tamanho natural */
+    min-width: 120px; /* Largura mínima para manter consistência */
+}
+
+.terms-content section {
+    margin-bottom: 2rem;
+}
+
+.terms-content h3 {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-family: 'UnifrakturMaguntia', cursive;
+}
+
+.terms-content ul {
+    list-style-type: none;
+    padding-left: 1.5rem;
+}
+
+.terms-content li::before {
+    content: '†';
+    color: var(--blood-red);
+    margin-right: 0.5rem;
+}
+
+/* Botão Voltar ao Topo - comportamento específico para o modal de termos */
+.terms-card .back-to-top {
+    position: static; /* Remove posicionamento fixo dentro do modal */
+    margin: 0;
+    bottom: auto;
+    right: auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .products {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .card {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* Campo honeypot anti-spam */
+.hp {
+    display: none;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal.show {
+    animation: fadeIn 0.3s ease-in-out;
+}

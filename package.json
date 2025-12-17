@@ -1,0 +1,12 @@
+{
+  "name": "blackcorpse-assets",
+  "version": "1.0.0",
+  "description": "scripts para otimizar imagens do site BlackCorpse (gera WebP e srcset)",
+  "private": true,
+  "scripts": {
+    "convert:bg": "node convert-images.js"
+  },
+  "dependencies": {
+    "sharp": "^0.32.0"
+  }
+}

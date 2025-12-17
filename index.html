@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>BlackCorpse</title>
+    <meta name="description" content="Loja oficial de camisetas DSBM BlackCorpse. Designs sombrios, impressão premium.">
+    <script defer src="config.js"></script>
+    <script defer src="detect-bg.js"></script>
+    <script defer src="shop.js"></script>
+    <script defer src="terms.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="assets/Bode.png" alt="BlackCorpse logo" onerror="this.style.display='none'">
+            <div>
+                <div class="site-title">BlackCorpse</div>
+                <div class="tag">• Do Black ao Death Metal •</div>
+            </div>
+        </div>
+        <nav aria-label="principal">
+            <a href="#produtos" style="color:var(--white);text-decoration:none;margin-right:12px">Produtos</a>
+            <a href="#contato" style="color:var(--muted);text-decoration:none">Contato</a>
+        </nav>
+    </header>
+ 
+    <main class="container">
+        <section class="hero">
+            <h1>BlackCorpse</h1>
+            <p>Que o obscuro lhe acompanhe.</p>
+        </section>
+
+        <section id="produtos" class="products">
+            <article class="product">
+                <img src="img/Burzum - Filosofem.png" alt="Burzum - Filosofem">
+                <h3>Filosofem Tee</h3>
+                <p class="price">R$ 119,90</p>
+                <p>Estampa frontal clássica em tinta vermelha. 100% algodão.</p>
+                <button class="coffin-btn large" data-name="Filosofem Tee" data-price="R$119,90">Comprar</button>
+            </article>
+
+            <article class="product">
+                <img src="img/Darkthrone - Transilvanian Hunger.png" alt="Darkthrone - Transilvanian Hunger">
+                <h3>Transilvanian Tee</h3>
+                <p class="price">R$ 129,90</p>
+                <p>Preta com detalhes em vermelho. Edição limitada.</p>
+                <button class="coffin-btn large" data-name="Transilvanian Tee" data-price="R$129,90">Comprar</button>
+            </article>
+
+            <article class="product">
+                <img src="img/Emperor - In the Nightside Eclipse.png" alt="Emperor - In the Nightside Eclipse">
+                <h3>Nightside Tee</h3>
+                <p class="price">R$ 139,90</p>
+                <p>Algodão penteado, impressão de alta definição.</p>
+                <button class="coffin-btn large" data-name="Nightside Tee" data-price="R$139,90">Comprar</button>
+            </article>
+
+            <article class="product">
+                <img src="img/Mayhem - De Mysteriis Dom Sathanas .png" alt="Mayhem - De Mysteriis Dom Sathanas">
+                <h3>Sathanas Tee</h3>
+                <p class="price">R$ 149,90</p>
+                <p>Silk-screen tradicional, limitada a 50 unidades.</p>
+                <button class="coffin-btn large" data-name="Sathanas Tee" data-price="R$149,90">Comprar</button>
+            </article>
+        </section>
+    </main>
+
+    <!-- Modal de compra (Formspree) -->
+    <div id="purchaseModal" class="modal" role="dialog" aria-hidden="true" aria-modal="false" aria-labelledby="orderTitle">
+        <div class="card">
+            <h2 id="orderTitle">Pedido</h2>
+            <form id="orderForm" action="https://formspree.io/f/xvgvjqkq" method="POST">
+                <input type="hidden" name="produto" class="prod-name">
+                <input type="hidden" name="preco" class="prod-price">
+                <!-- suporte Formspree reply-to, honeypot anti-spam e referência do pedido -->
+                <input type="hidden" name="_replyto" id="_replyto">
+                <input type="hidden" name="order_ref" id="order_ref">
+                <input type="text" name="url" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                <div class="form-row">
+                    <div>Produto: <strong class="display-name"></strong></div>
+                    <div>Preço: <strong class="display-price"></strong></div>
+                </div>
+
+                <div class="form-row">
+                    <label for="customerName">Nome</label>
+                    <input required id="customerName" name="nome" class="input" placeholder="Seu nome">
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input required type="email" id="email" name="email" class="input" placeholder="seu@email.com">
+                </div>
+
+                <div class="form-row">
+                    <label for="cep">CEP</label>
+                    <input required id="cep" name="cep" class="input" placeholder="00000-000">
+                </div>
+
+                <div class="form-row">
+                    <label for="endereco">Endereço (Rua)</label>
+                    <input required id="endereco" name="endereco" class="input" placeholder="Rua, Av., Travessa">
+                </div>
+
+                <div class="form-row" style="display:flex;gap:8px;flex-wrap:wrap">
+                    <div style="flex:1">
+                        <label for="numero">Número</label>
+                        <input required id="numero" name="numero" class="input" placeholder="123">
+                    </div>
+                    <div style="flex:1">
+                        <label for="complemento">Complemento (opcional)</label>
+                        <input id="complemento" name="complemento" class="input" placeholder="Apto, Bloco">
+                    </div>
+                </div>
+
+                <div class="form-row" style="display:flex;gap:8px;flex-wrap:wrap">
+                    <div style="flex:1">
+                        <label for="cidade">Cidade</label>
+                        <input required id="cidade" name="cidade" class="input" placeholder="Cidade">
+                    </div>
+                    <div style="width:120px">
+                        <label for="uf">Estado (UF)</label>
+                        <input required id="uf" name="uf" class="input" placeholder="SP">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="size">Tamanho</label>
+                    <select required id="size" name="tamanho" class="input">
+                        <option value="">Selecione...</option>
+                        <option value="PP">PP</option>
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="GG">GG</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="phone">Telefone (opcional)</label>
+                    <input id="phone" name="telefone" class="input" placeholder="(11) 9xxxx-xxxx">
+                </div>
+
+                <div class="form-row">
+                    <label for="comments">Observações (opcional)</label>
+                    <textarea id="comments" name="observacoes" class="input" rows="3" placeholder="Detalhes adicionais do pedido"></textarea>
+                </div>
+
+                <div class="actions">
+                    <button type="button" id="closeModal" class="coffin-btn">Fechar</button>
+                    <button type="submit" class="coffin-btn red">Enviar pedido</button>
+                </div>
+            </form>
+
+            <div id="formSuccess" class="form-success" style="display:none">
+                <h3>🤘 Pedido registrado!</h3>
+                <p>Código do pedido: <strong id="orderRefDisplay"></strong></p>
+                <p>Enviamos instruções por email. Abaixo você encontra formas rápidas de pagamento — substitua os valores/chaves pelo seus dados reais no painel administrativo.</p>
+
+                <div class="payment-methods" style="margin-top:16px">
+                    <section class="pix" style="margin-bottom:12px">
+                        <h4 style="margin:6px 0;color:var(--white)">PIX</h4>
+                        <p style="margin:6px 0;color:#e0e0e0">Chave PIX: <code id="pixKey">SEU-PIX-AQUI</code></p>
+                        <p style="margin:6px 0;color:#e0e0e0">Valor: <strong id="pixAmount"></strong></p>
+                        <div style="display:flex;gap:8px;margin-top:8px">
+                            <button class="coffin-btn" id="copyPix">Copiar chave PIX</button>
+                            <button class="coffin-btn" id="copyPixPayload">Copiar texto de pagamento</button>
+                        </div>
+                    </section>
+
+                    <section class="mercado-pago">
+                        <h4 style="margin:6px 0;color:var(--white)">Mercado Pago / Checkout</h4>
+                        <p style="margin:6px 0;color:#e0e0e0">Pagar rapidamente via Mercado Pago:</p>
+                        <a id="paypalLink" class="coffin-btn red" href="#" target="_blank" rel="noopener noreferrer">Pagar com Mercado Pago</a>
+                    </section>
+                </div>
+
+                <p style="margin-top:12px;opacity:0.9">Se preferir transferência bancária ou boleto, responda o email com o código do pedido.</p>
+
+                <div class="actions" style="margin-top:16px">
+                    <button type="button" class="coffin-btn" onclick="document.getElementById('purchaseModal').classList.remove('show')">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contato" class="footer">
+        <p>© BlackCorpse => <a href="https://www.instagram.com/black_corpseband/" style="color:var(--accent)">Instagram</a></p>
+        <div style="margin-top:12px">
+            <small style="opacity:0.7">
+                Para dúvidas e atacado: <a href="mailto:BlackCorpseshirts666@gmail.com">BlackCorpseshirts666@gmail.com</a>
+            </small>
+            <div style="margin-top:16px">
+                <a href="#" class="terms-link" onclick="document.getElementById('termsModal').classList.add('show')">Termos & Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Política de Privacidade -->
+    <div id="termsModal" class="modal" role="dialog" aria-hidden="true">
+        <div class="card terms-card">
+            <h2>Política de Privacidade e Termos de Uso</h2>
+            
+            <div class="terms-content">
+                <section>
+                    <h3>† Coleta de Dados</h3>
+                    <p>Coletamos apenas as informações essenciais para processar seu pedido e garantir a melhor experiência:</p>
+                    <ul>
+                        <li>Nome completo e email para comunicação e identificação</li>
+                        <li>Endereço completo para entrega precisa</li>
+                        <li>Tamanho da camiseta para garantir o envio correto</li>
+                        <li>Telefone (opcional) para contato em caso de problemas na entrega</li>
+                        <li>Observações do pedido para atender solicitações específicas</li>
+                    </ul>
+                    <p>Não coletamos dados sensíveis ou desnecessários para a finalização do seu pedido.</p>
+                </section>
+
+                <section>
+                    <h3>⚡ Uso dos Dados</h3>
+                    <p>Seus dados serão utilizados exclusivamente para:</p>
+                    <ul>
+                        <li>Processar e entregar seu pedido com segurança</li>
+                        <li>Comunicar atualizações sobre status do pedido</li>
+                        <li>Resolver eventuais problemas com a entrega</li>
+                        <li>Emitir documentação fiscal quando aplicável</li>
+                        <li>Melhorar nosso atendimento e serviços</li>
+                    </ul>
+                    <p>Não utilizamos seus dados para marketing sem consentimento prévio.</p>
+                </section>
+
+                <section>
+                    <h3>☠ Segurança dos Dados</h3>
+                    <p>Seus dados são tratados com o máximo de segurança:</p>
+                    <ul>
+                        <li>Processamento seguro via Formspree com criptografia</li>
+                        <li>Não armazenamos dados de pagamento em nossos servidores</li>
+                        <li>Dados compartilhados apenas com parceiros essenciais (transportadora)</li>
+                        <li>Acesso restrito e controlado às informações</li>
+                        <li>Exclusão segura após o período legal necessário</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>✝ Seus Direitos</h3>
+                    <p>Conforme a LGPD, você tem direito a:</p>
+                    <ul>
+                        <li>Acessar seus dados armazenados conosco</li>
+                        <li>Solicitar correção de informações imprecisas</li>
+                        <li>Pedir exclusão dos seus dados</li>
+                        <li>Revogar consentimento a qualquer momento</li>
+                        <li>Solicitar portabilidade dos dados</li>
+                    </ul>
+                    <p>Para exercer seus direitos, entre em contato via email.</p>
+                </section>
+
+                <section>
+                    <h3>✟ Termos de Venda</h3>
+                    <ul>
+                        <li>Envio em até 3 dias úteis após confirmação do pagamento</li>
+                        <li>Fotos ilustrativas - variações sutis são normais devido ao processo artesanal</li>
+                        <li>Prazo de 7 dias para trocas em caso de defeito</li>
+                        <li>Dúvidas devem ser esclarecidas antes da finalização do pedido</li>
+                        <li>Não nos responsabilizamos por endereços informados incorretamente</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>⚔ Cookies & Rastreamento</h3>
+                    <p>Nosso site utiliza apenas cookies essenciais para:</p>
+                    <ul>
+                        <li>Manter sua sessão segura durante a compra</li>
+                        <li>Garantir o funcionamento básico do site</li>
+                        <li>Prevenir atividades fraudulentas</li>
+                    </ul>
+                    <p>Não utilizamos cookies de rastreamento ou análise comportamental.</p>
+                </section>
+            </div>
+
+            <div class="actions terms-actions" style="margin-top:24px">
+                <button type="button" class="coffin-btn" onclick="document.getElementById('termsModal').classList.remove('show')">Fechar</button>
+                <button id="backToTop" class="back-to-top coffin-btn" onclick="document.querySelector('.terms-card').scrollTop = 0" style="display:none">
+                    Voltar ao topo
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
